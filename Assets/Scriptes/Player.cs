@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private Rigidbody2D rg;
+
+    public bool isLunched;
+
+    private void Awake()
+    {
+        rg.isKinematic = true;
+
+
+    }
+    private void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(isLunched && rg.IsSleeping()) {
+            //next Player
+            Destroy(gameObject);
+        }
+
+
+    }
+
+    public void Lunch(Vector2 vector)
+    {
+        rg.isKinematic = false;
+        rg.AddForce(vector * 5 , ForceMode2D.Impulse);
+
     }
 }
