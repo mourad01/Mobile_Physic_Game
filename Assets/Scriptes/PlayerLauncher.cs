@@ -54,6 +54,7 @@ public class PlayerLauncher : MonoBehaviour
         {
             holdingPlayer = false;
             player.Lunch(playerStartPosition.position - player.transform.position);
+            player.isLunched = true;
         }
         if(holdingPlayer && player.isLunched==false) {
             Vector3 newPos;
@@ -96,5 +97,11 @@ public class PlayerLauncher : MonoBehaviour
             return true;
         }
         else { return false; }
+    }
+    public void SetNewPlayer(GameObject playerPrefab)
+    {
+        player = Instantiate(playerPrefab, playerStartPosition.position, Quaternion.identity).GetComponent<Player>();
+        CameraController.instance.SetPlayer(player);
+
     }
 }

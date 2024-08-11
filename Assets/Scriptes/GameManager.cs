@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<GameObject > availablePlayer = new List<GameObject>(); 
+    public static GameManager instance;
+    private void Awake()
     {
-        
+        instance = this;
+    }
+    private void Start()
+    {
+        SpawnerNewPlayer();
+    }
+    public void SpawnerNewPlayer()
+    {
+        PlayerLauncher.Instance.SetNewPlayer(availablePlayer[0]);
+        availablePlayer.RemoveAt(0);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayerFinished()
     {
-        
+        SpawnerNewPlayer();
     }
 }

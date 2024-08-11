@@ -8,9 +8,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D rg;
 
     public bool isLunched;
+    
 
     private void Awake()
     {
+        
         rg.isKinematic = true;
 
 
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
     {
         if(isLunched && rg.IsSleeping()) {
             //next Player
+            GameManager.instance.PlayerFinished();
             Destroy(gameObject);
         }
 
