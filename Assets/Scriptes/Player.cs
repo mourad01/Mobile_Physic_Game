@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         
-        rg.isKinematic = true;
+        rg.bodyType = RigidbodyType2D.Kinematic;
 
 
     }
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if(isLunched && rg.IsSleeping()) {
-            //next Player
+         
             GameManager.instance.PlayerFinished();
             Destroy(gameObject);
         }
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     public void Lunch(Vector2 vector)
     {
-        rg.isKinematic = false;
+        rg.bodyType = RigidbodyType2D.Dynamic;
         rg.AddForce(vector * 5 , ForceMode2D.Impulse);
 
     }
